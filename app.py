@@ -1,0 +1,20 @@
+import pickle
+from flask import Flask, request, jsonify,app,url_for,render_template
+import numpy as np
+import pandas as pd
+app=Flask(__name__)
+classifymodel=pickle.load(open('conv2d.pkl','rb'))
+@app.route('/')
+def home():
+    return render_template('pet.html')
+@app.route('/predict',methods=['POST'])
+def predict():
+    data=request.json['data']
+    print(data)
+    print(np.array(list(data.values)).reshape(1,-1))
+    output=classifymodel.predict(np.array(list(data.values)).reshape(1,-1))
+    print(output)
+    return jsonify(output[0])
+if __name__=='__main__':
+    app.run(debug=True)
+    
