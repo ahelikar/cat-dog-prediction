@@ -1,0 +1,9 @@
+# requirements.txt
+flask
+scikit-learn
+numpy
+pandas
+seaborn
+matplotlib
+tensorflow
+keras
