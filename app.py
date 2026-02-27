@@ -5,7 +5,11 @@ try:
 except ImportError:
     print("Flask is not installed. Install it using: pip install flask")
     sys.exit(1)
-import numpy as np
+try:
+    import numpy as np
+except ImportError:
+    print("NumPy is not installed. Install it using: pip install numpy")
+    sys.exit(1)
 import pandas as pd
 app = Flask(__name__)
 classifymodel=pickle.load(open('conv2d.pkl','rb'))
